@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 		
+			xmlns:prod-solset="lgt.product-solset"
+			xmlns:prod="lgt.product"
+           targetNamespace="lgt.product">
+
+    <xs:import schemaLocation="product-solutionset-association.xsd" namespace="lgt.product-solset"  />
+         
+    <xs:complexType name="Product">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="description" type="xs:string" />
+            <xs:element name="version" type="prod:versionType" minOccurs="0" maxOccurs="1"/>			
+            <xs:element name="productId" type="xs:long" minOccurs="1" maxOccurs="1" />
+            <xs:element name="productSolutionsetAssociations" type="prod-solset:ProductSolutionsetAssociation" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="versionType">
+        <xs:annotation>
+            <xs:documentation>
+                A generic version type of the format X.Y.Z
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">    		            	
+            <xs:pattern value="[0-9]+\.[0-9]+\.[0-9]+"/>            	
+        </xs:restriction>
+    </xs:simpleType>
+ 
+</xs:schema>

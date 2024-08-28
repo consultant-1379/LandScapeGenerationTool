@@ -1,0 +1,89 @@
+/* Solution set summary table */
+
+
+#definition-summary {
+	width: 300px;
+	float: left;
+	margin-top: 84px;
+	margin-bottom: 50px	
+}
+
+#definition-summary hr.black-line {
+	width: 300px;
+	margin: 0px !important;
+}
+
+#definition-summary h4, #definition-summary h3 {
+	line-height: 40px;
+}
+
+#top-of-definition-summary {
+	height: 40px;
+}
+
+#top-of-definition-summary h3 {
+	width: 220px;
+	float: left;
+	text-indent: 20px;
+}
+
+#top-of-definition-summary .e-btn {
+	margin: 7px 0 0 0;
+}
+
+/*Summary Table*/
+.products-summary-table{
+	width: 305px;
+	max-height: 136px;
+	overflow: auto;
+}
+
+div.scrollsection2 {
+	width: 305px;
+	height: 136px;
+	overflow: auto;
+}
+
+.summarytable label {
+	width: 280px !important;
+	margin-bottom:0px !important;
+	line-height:32px;
+}
+
+.summarytable .e-next {
+	margin-left:225px;
+}
+
+.summarytable button.e-icon{
+	margin-top:-26px !important;
+}
+
+.summarytable tbody tr{
+	line-height:32px;
+}
+
+#bottom-of-definition-summary {
+	float: right;
+	margin: 15px 0px;
+}
+
+#bottom-of-definition-summary .e-btn {
+	margin: 0px;
+}
+
+/*Lines in summary solution set selection table */
+
+.black-line {
+	border: none;
+	height: 1px;
+	background-color: #918f90;
+	margin: 0 0 10px 0 !important;
+	width: 500px;
+}
+
+.grey-line {
+	border: none;
+	height: 1px;
+	background-color: #d2d2d2;
+	margin: 0px !important;
+}

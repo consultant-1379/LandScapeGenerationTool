@@ -1,0 +1,23 @@
+/*Solution sets table  */
+
+div.scrollsection1 {
+	width: 500px;
+	height: 288px;
+	overflow: auto;
+	margin-top: 10px;
+}
+
+.accordion {
+	padding: 5px;
+	margin: 0px !important;
+	display: none;
+}
+
+.accordion>label {
+	padding: 5px;
+	margin: 0px !important;
+}
+
+.shade {
+	background-color: #F6F6F6 !important;
+}

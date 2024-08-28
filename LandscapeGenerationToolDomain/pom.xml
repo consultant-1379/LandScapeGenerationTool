@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+	  <groupId>com.ericsson.nms.litp</groupId>
+	  <artifactId>LandScapeGenerationTool</artifactId>
+	  <version>1.1.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>LandscapeGenerationToolDomain</artifactId>
+
+	<name>Landscape Generator Tool Domain</name>
+
+	<build>
+		<plugins>
+
+			<!-- Generates classes from .xsd file and annotates them as persistent 
+				entities: -->
+			<!-- see binding.xjb for binding details -->
+			<plugin>
+				<groupId>org.jvnet.hyperjaxb3</groupId>
+				<artifactId>maven-hyperjaxb3-plugin</artifactId>
+				<version>0.5.6</version>
+				<executions>
+					<execution>
+						<!-- for the generate goal of hyperjaxb3, use the following config: -->
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<variant>jpa2</variant>
+							<!-- allows superclass to be defined for the classes generated from 
+								xsd: -->
+							<extension>true</extension>
+							<removeOldOutput>true</removeOldOutput>
+							<persistenceXml>${basedir}/src/main/resources/lgt-persistence.xml</persistenceXml>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<formats>
+						<format>xml</format>
+					</formats>
+					<instrumentation>
+						<excludes>
+							<exclude>**/test/java/com/ericsson/**/*.class</exclude>
+						</excludes>
+						<includes>
+							<!-- only include BaseType, other classes in this pkg are generated -->
+							<include>**/com/ericsson/nms/lgt/domain/landscape/BaseType.class</include>
+						</includes>
+					</instrumentation>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.jvnet.hyperjaxb3
+										</groupId>
+										<artifactId>
+											maven-hyperjaxb3-plugin
+										</artifactId>
+										<versionRange>
+											[0.5.6,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- these dependencies are needed to compile the generated classes: -->
+	<dependencies>
+
+		<!-- dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency-->
+		<dependency>
+  		<groupId>javax.persistence</groupId>
+ 		 <artifactId>com.springsource.javax.persistence</artifactId>
+ 		 <version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+			<version>0.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jvnet.hyperjaxb3</groupId>
+			<artifactId>maven-hyperjaxb3-plugin</artifactId>
+			<version>0.5.6</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+</project>

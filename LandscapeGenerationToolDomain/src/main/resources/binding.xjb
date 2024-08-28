@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+			  xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+			  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"  version="2.0"
+			  jaxb:extensionBindingPrefixes="xjc hj orm">
+			  
+			  
+  <!-- The following is a good reference; http://confluence.highsource.org/display/HJ3/Customization+Guide  -->
+	<jxb:bindings schemaLocation="solutionset.xsd" node="/xs:schema">	
+
+		<jxb:globalBindings localScoping="toplevel">      
+        	<xjc:superClass name="com.ericsson.nms.lgt.domain.landscape.BaseType"/>
+        	<jxb:serializable/>
+    	</jxb:globalBindings>
+			  			  
+		<jxb:schemaBindings>
+  			<jxb:package name="com.ericsson.nms.lgt.domain.landscape"></jxb:package>  
+		</jxb:schemaBindings>
+		
+		<!-- instead of hyperjaxb generating its own id, we are specifying hyperjaxb to use solutionsetId and to autogenerate from it   -->
+		<jaxb:bindings node="xs:complexType[@name='Solutionset']/xs:sequence/xs:element[@name='solutionsetId']">
+			<hj:id>
+				<orm:generated-value strategy="AUTO"/>
+			</hj:id>
+		</jaxb:bindings>	
+		
+		<!-- adds a named query to the Solutionset entity  -->
+		<jaxb:bindings node="xs:complexType[@name='Solutionset']">
+      	<!-- Adds a named query to the Solutionset entity. -->
+      		<hj:entity>
+     	 		<orm:named-query name="Solutionset.dependency">
+        		<orm:query><![CDATA[SELECT solutionDependencyListType.hjid FROM Solutionset s JOIN s.dependencies solutionDependencyListType WHERE s.solutionsetId=:theId]]></orm:query>
+     	 		</orm:named-query>
+     	 	</hj:entity>
+    	</jaxb:bindings> 	
+	
+ 	</jxb:bindings>
+
+ 	<jxb:bindings schemaLocation="product.xsd" node="/xs:schema">
+
+		<jxb:schemaBindings>
+  			<jxb:package name="com.ericsson.nms.lgt.domain.landscape"></jxb:package>  
+		</jxb:schemaBindings>
+		
+		<!-- instead of hyperjaxb generating its own id, we are specifying hyperjaxb to use productId and to autogenerate from it   -->
+		<jaxb:bindings node="xs:complexType[@name='Product']/xs:sequence/xs:element[@name='productId']">
+			<hj:id>
+				<orm:generated-value strategy="AUTO"/>
+			</hj:id>
+		</jaxb:bindings>
+		
+		<!-- adds a named query to the Product entity  -->
+		<jaxb:bindings node="xs:complexType[@name='Product']">
+		<!-- Adds a named query to the Product entity. -->
+      		<hj:entity>
+     	 		<orm:named-query name="Product.solutionset_associations">
+        		<orm:query><![CDATA[SELECT productSolutionsetAssociations FROM Product p WHERE p.productId = :productId]]></orm:query>
+     	 		</orm:named-query>
+     	 	</hj:entity>
+    	</jaxb:bindings>
+
+ 
+
+ 	</jxb:bindings>
+ 	
+ 	<jxb:bindings schemaLocation="product-solutionset-association.xsd" node="/xs:schema">
+
+		<jxb:schemaBindings>
+  			<jxb:package name="com.ericsson.nms.lgt.domain.landscape"></jxb:package>  
+		</jxb:schemaBindings>
+		
+
+
+
+ 	</jxb:bindings>
+
+</jxb:bindings>

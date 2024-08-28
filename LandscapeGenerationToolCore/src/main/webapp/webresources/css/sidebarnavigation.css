@@ -1,0 +1,55 @@
+/*Sidebar Navigation*/
+
+ul.tabs  {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul.tabs li {
+	border-bottom: 1px solid #d2d2d2;
+	line-height: 40px;
+	list-style-type: none;
+	min-height: 40px;
+}
+
+ul.tabs li a {
+	color: #0066b3;
+	display: block;
+	padding-left: 18px;
+	text-decoration: none !important;
+}
+
+ul.tabs li a.current {
+	background-color: #ffffff;
+	background-image:
+		url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAANCAYAAACUwi84AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHhJREFUeNpidLSxOc/AwGAAxAv2HzmSyIAGmKCSIJAAVDwfm4IFSHwMRcwPHj3aqCgnp4BkkgGIDxIHKwAR+BQxw4zCoUiAEd1RQDfcB1IKyI5ElpyPLAkEExjRJBOQJMHhwohPEsRgxCcJcwNOSZiCC7gkQQAgwADlqTiA3w3OgQAAAABJRU5ErkJggg==);
+	background-repeat: no-repeat;
+	background-position: 277px 13px;
+}
+
+ul.tabs li.disabled{
+	cursor:not-allowed;
+}
+
+#new-landscape-def-heading {
+	font-size: 18px;
+	background-color: #0EBFE9;
+	color: white;
+	width: 300px;
+	height: 40px;
+	font-weight: normal;
+	margin: 84px 0px 0px 0px;
+}
+
+#new-landscape-def-heading span {
+	padding-left: 18px;
+	line-height: 40px;
+}
+
+.paragraphs {
+	margin: 0px;
+	background-color: white;
+	padding-left: 20px;
+	line-height: 23px;
+	font-size: 90%;
+}

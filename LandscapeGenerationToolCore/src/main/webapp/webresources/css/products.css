@@ -1,0 +1,13 @@
+/*    Product table */
+
+div.scrollsectionProducts {
+	width: 500px;
+	height: 288px;
+	overflow: auto;
+	margin-top: 10px;
+}
+
+#Products-for-selection h3 {
+	line-height: 40px;
+	color: #333333;
+}

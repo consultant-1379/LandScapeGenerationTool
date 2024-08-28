@@ -1,0 +1,42 @@
+#userName{
+	float: right;
+	height: 34px;
+}
+#userName button span{
+	color: #808080;
+}
+
+#loggedInUserIcon{
+    background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAARCAYAAAAL4VbbAAAB3ElEQVR42mNggIKnbz79L5qy479h0vT/BonT/usnTP1fM3vPfwZ08Onrz/92OfP+F07e/v/uu3f8////53r69CnX1HUn/l9/8Or/p68/EJrq5u77n9KxAajmvxBIIRCzAjELiM7p3fC/Yvp2hGLPkoX/9529i6wYpJARRO8+ffu/f9l8hGKrjJn/T11/gtXkE1ce/jeM70Mozu3f9L998QGQYnEg5odqAOPSyZv/p3esRijeA7RKPaLn/4KtZ2AaQDYIzdt88r9iYPP/XSduIBT7ly/4H9O4/L9RQv9/+8yp/yNrF/+3TZ/8Xy+6679nwYz/HvnTIYpBijK714E5X758ET9x5cH/CSsO/j9++QHIFi6QeErLsv+hFXP/M6iEtv+/dv/F/zX7LmL14JwNx8AGyXhW/WdQCmoFm6IQ0IQ16ECKjl2891/arfw/gyJQ0fHL9//L+TVgNVnavQKo+O5/adey/wwgRccv3f8v61OLNehAio5duPtfyrnkPwNI0bFL9/7LeFWDFMsgBx0IgxQdu3Dnv6Rj0X8GGa8aiJs8KkGK1YFYHqoJjEGKjp6/81/CvuA/g1ZI03+Qu0AeAFkp5VL6XxJoGkiRpEMhWJGEXf5/Nc9yzOSKDwAAwtai1vx2ZKUAAAAASUVORK5CYII=');
+	background-repeat: no-repeat;
+	padding: 0px 10px 0px 20px !important;
+	background-position-y: 5px;
+}
+
+#LoginArea{
+	width: 400px;
+	margin-top: 35px;
+	position:absolute;
+	right:10px;
+    border-radius:0px 0px 5px 5px;
+    border-bottom: 1px solid #d2d2d2;
+    border-left: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
+    padding:10px 10px 10px 20px;
+    display:none;
+    background-color: #FFFFFF;
+}
+
+#LoginArea form{
+	margin: 0px !important;
+}
+
+#LoginArea form span{
+	margin-right:10px;
+}
+
+#LoginArea form span.e-icon{
+	height: 24px;
+	width: 24px;
+	float:right;
+}

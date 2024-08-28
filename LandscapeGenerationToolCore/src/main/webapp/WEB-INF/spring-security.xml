@@ -1,0 +1,40 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<global-method-security secured-annotations="enabled" />
+	<!-- In order to use SpringSecurity Taglibs on the main jsp page, "use-expressions" is set to true -->
+	<http auto-config="true" use-expressions="true">
+	
+		<!-- Login is handled here -->
+		<form-login login-page="/displaySolutionSets.jsp" default-target-url="/select.html"
+			authentication-failure-url="/select.html?login_error=true" />
+
+		<!-- When the user log's out the session is invalidated (ver important), 
+			 it redirects to /logout which is picked up by the login controller. 
+			 
+			 If the logout is successful then select.html is displayed-->
+		<logout invalidate-session="true" 
+				logout-url="/logout" 
+				logout-success-url="/select.html"/>
+			
+		<!-- Only allows for one session at a time for each user,
+			 redirects the user if the session is invalid -->
+	 	<session-management invalid-session-url="/select.html">
+        	<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+    	</session-management>
+	</http>
+
+	<!-- This is where the user info is being stored..   Using spring user schema...  Not re-inventing the wheel, using their schema -->
+	<authentication-manager>
+	  <authentication-provider>
+	   <jdbc-user-service data-source-ref="dataSourceLGT"/>
+	  </authentication-provider>
+	</authentication-manager>
+ 
+</beans:beans>
+

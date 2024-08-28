@@ -1,0 +1,53 @@
+.e-window{
+	margin:0px !important;
+}
+
+.e-window > div {
+	position:absolute;
+	left:1300px;
+	top:110px;
+	height: 400px !important;
+	width: 270px !important;
+}
+
+.e-window > div > .e-head {
+	border-radius:10px 10px 0px 0px; !important;	
+}
+
+.e-window > div > .e-head:first-of-type {
+	cursor: default !important;
+}
+
+.e-window.e-squared > div{
+	border-radius:10px;
+}
+
+.e-content {
+	height: 350px !important;
+	overflow: auto !important;
+	word-wrap: break-word;
+}
+
+.e-title {
+	font-size: 15px !important;
+}
+
+.timeStamp {
+	text-indent:10px;
+	font-size: 11px;
+	color: RGB(168,170,173);
+}
+
+.notification {
+	font-size: 13px;	
+}
+
+#alertnotify {
+	border-radius: 25px;
+	border-color: red;
+	background-color:red;
+	color:#FFFFFF;
+	margin-left:5px;
+	padding:2px 6px;
+	font-weight:bold;
+}

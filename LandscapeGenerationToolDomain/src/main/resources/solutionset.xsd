@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="Solutionset">
+		<xs:sequence>
+			<!-- Solutiuon Set name -->
+			<xs:element name="name" type="solutionsetNameType"
+				minOccurs="1" maxOccurs="1" />
+
+			<xs:element name="solutionsetId" type="xs:long" minOccurs="1"
+				maxOccurs="1" />
+
+			<!-- Solution Set description -->
+			<xs:element name="description" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+				
+			<xs:element name="authorityLevel" type="authorityLevelEnumType"/>
+
+			<!-- Solution Set version in numerical format -->
+			<xs:element name="version" type="versionType" minOccurs="0"
+				maxOccurs="1" />
+
+			<!-- License details -->
+			<xs:element name="licensing" type="solutionsetLicenseType"
+				minOccurs="1" maxOccurs="1" />
+
+			<!-- Solution Set type -->
+			<xs:element name="type" type="solutionsetTypeType"
+				minOccurs="1" maxOccurs="1" />
+
+			<!-- solution set dependencies -->
+			<xs:element name="dependencies" type="solutionsetDependencyListType"
+				minOccurs="0" maxOccurs="1" />
+
+			<!-- RPM contents -->
+			<xs:element name="rpmcontents" type="rpmListType"
+				minOccurs="0" maxOccurs="1" />
+
+		</xs:sequence>
+	</xs:complexType> <!-- "solutionset" -->
+
+
+		<xs:simpleType name="authorityLevelEnumType">
+    			<xs:restriction base="xs:normalizedString">
+        			<xs:enumeration value="ROLE_ADMIN"/>
+        			<xs:enumeration value="ROLE_DEFAULT"/>
+    			</xs:restriction>
+		</xs:simpleType>
+
+	<xs:simpleType name="solutionsetNameType">
+		<xs:annotation>
+			<xs:documentation>
+				This defines a Solution Set's name.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9]+"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="versionType">
+		<xs:annotation>
+			<xs:documentation>
+				A generic version type of the format X.Y.Z
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]+\.[0-9]+\.[0-9]+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="solutionsetDependencyType">
+		<xs:annotation>
+			<xs:documentation>
+				This defines a Solution Set dependency.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="solutionsetNameType"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="minversion" type="versionType"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="solutionsetDependencyListType">
+		<xs:annotation>
+			<xs:documentation>
+				This is the list of Solution Set dependencies.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="solutionsetdependency" type="solutionsetDependencyType"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="solutionsetLicenseType">
+		<xs:annotation>
+			<xs:documentation>
+				Licensing details for this solution set
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="licensetype" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[A-Za-z0-9]+" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="solutionsetTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				The Solution Set's type - either a commercial
+				offering or a basic
+				component
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="basic" />
+			<xs:element name="commercial" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="rpmType">
+		<xs:annotation>
+			<xs:documentation>
+				The RPM type which defines the name and version of
+				the RPM contained
+				within
+				a solution set
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="rpmNameType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="version" type="versionType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="dimensioning" type="dimensioningType"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="rpmNameType">
+		<xs:annotation>
+			<xs:documentation>
+				This defines an RPM's name.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<!-- format follows the layout for e.g. ERICapp1_CXP1234567 -->
+			<xs:pattern value="ERIC[a-z0-9]+_CXP[0-9]{7}"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="rpmListType">
+		<xs:annotation>
+			<xs:documentation>
+				A list of one or more RPM definitions
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rpm" type="rpmType" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="dimensioningType">
+		<xs:annotation>
+			<xs:documentation>
+				A description of the dimensioning requirements of
+				this RPM
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="componentType" type="componentTypeType"
+				minOccurs="1" maxOccurs="1" />
+			<!-- TODO: define components for CPU, memory and so on and influencing 
+				factors such as network size and so on - IO, LAN etc???? -->
+			<xs:element name="ncpu" type="ncpuType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="memory" type="memoryType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="disk" type="diskType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="diskio" type="diskioType" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="ncpuType">
+		<xs:annotation>
+			<xs:documentation>
+				This defines the normalised CPU requirements for
+				the component.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<!-- famous last words: 10000 CPUs is enough for anyone! -->
+			<xs:maxInclusive value='10000' />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="memoryType">
+		<xs:annotation>
+			<xs:documentation>
+				This defines the normalised CPU requirements for
+				the component.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<!-- famous last words: 1Tb of RAM is enough for anyone! -->
+			<xs:maxInclusive value='1099511627776' />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="diskType">
+		<xs:annotation>
+			<xs:documentation>
+				Definition of the storage requirements
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<!-- TODO: describe this in terms of LUNs etc as well??? -->
+			<!-- famous last words: 100Tb of disk space is enough for anyone! -->
+			<!-- in GB -->
+			<xs:maxInclusive value='102400' />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="diskioType">
+		<xs:annotation>
+			<xs:documentation>
+				defnition of the disk IO in Mb/sec
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:maxInclusive value='1000' />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="componentTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				The type of a specific component
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<!-- TODO: define more clearly what these can be -->
+			<xs:element name="ui" />
+			<xs:element name="service" />
+			<xs:element name="modelfragment" />
+			<xs:element name="configdata" />
+			<xs:element name="generic" />
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
